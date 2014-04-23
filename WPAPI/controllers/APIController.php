@@ -24,4 +24,12 @@ class APIController extends \WPSpokes\Framework\Controller
       $q = $q->where($key, '=', $val);
     echo $q->get()->toJSON();
   }
+  
+  public function show($id)
+  {
+    $class = $this->model_class();
+    if (!($object = $class::find($id)))
+      return $this->set404();
+    echo $object->toJSON();
+  }
 }
